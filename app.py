@@ -2,6 +2,8 @@
 # from jinja2 import TemplateNotFound
 import email
 from enum import unique
+from mailbox import NotEmptyError
+import re
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -125,11 +127,16 @@ def login():
     form = LoginForm()
     print("Entrou aqui")
     if form.validate_on_submit():
-        user = Utilizadores.query.filter_by(nome=form.email.data).first()
+        user = Utilizadores.query.filter_by(email=form.email.data).first()
+        print(user)
         if user:
             if user.password == form.password.data:
                 login_user(user, remember=form.password.data)
-                return redirect(url_for('dashboard'))
+                if(user.roleId==1):
+                    return '<h1> Modo de Administrador </h1>'
+                else:
+                    return '<h1> Modo Cliente </h1>'
+                #return redirect(url_for('dashboard'))
         
         return '<h1> Email invalido ou password errada! </h1>'
 
@@ -144,9 +151,12 @@ def registar():
     print(form.validate_on_submit())
     if form.validate_on_submit():
         # hashed_password = generate_password_hash(form.password.data, method='sha256')
-        new_user = Utilizadores(nome = Clientes(form.nome.data), morada = Clientes(form.morada.data), email=form.email.data, password=form.password.data)
-        # new_user = Clientes(nome=form.nome.data, morada=form.morada.data, utilizadorId=Utilizadores.id)
+        new_user = Utilizadores(email=form.email.data, password=form.password.data, roleId=2)
         db.session.add(new_user)
+        db.session.commit()
+        user = Utilizadores.query.filter_by(email=form.email.data).first()
+        new_client = Clientes(nome=form.nome.data, morada=form.morada.data, utilizadorId=user.id)
+        db.session.add(new_client)
         db.session.commit()
 
         return redirect(url_for('login'))
@@ -157,7 +167,7 @@ def registar():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html', name=current_user.nome)
+    return render_template('dashboard.html', email=current_user.email)
 
 
 @app.route('/logout')
