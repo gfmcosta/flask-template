@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Loja - Lucas</title>
+    
+</head>
+<body>
+    
+    <div id="layout">
+        <ul>
+            <li><a href="/"><b>HOME</b></a></li>
+            <li><a href="/sobre"><b>SOBRE</b></a></li>
+            <div class="topnav-right">
+                <li ><a href="/login"><b>LOGIN</b></a></li>
+                <!-- <li ><a href="/registar"><b>REGISTAR</b></a></li> -->
+                <li ><a href="/registar"><b>REGISTAR</b></a></li>
+            </div>
+        </ul>
+
+        <div class="content">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+        
+
+        <footer id="rodape">
+            <table id="tableFooter">
+                
+                <tr class="tr1F">
+                    <th id="th1"><b>Para Contactar o Aluno: </b></th>
+                    <td class="td1footer">
+                        <li id="emailSite">
+                            <a href="mailto:aluno220204@epad.edu.pt">aluno220204@epad.edu.pt</a>
+                        </li>
+                    </td>
+                </tr>
+                <br>
+    
+                
+                <tr class="tr2F">
+                    <th id="th2"><b>A Escola EPAD: </b></th>
+                    <td class="td2footer">
+                        <li id="emailSite">
+                            <div class="divTeste">
+                                <a href="https://www.epad.edu.pt/">epad.edu.pt</a>
+                            </div>
+                        </li>
+                    </td>
+                </tr>
+            </table>
+        </footer>
+    </div>
+
+</body>
+</html>
