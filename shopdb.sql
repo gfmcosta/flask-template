@@ -1,19 +1,26 @@
 CREATE DATABASE IF NOT EXISTS shopdb;
 USE shopdb;
 
+
+-- SELECT descricao as role, email, password
+-- from shopdb.roles, shopdb.utilizadores
+-- where roleId = roles.id;
+
+
+
 -- #1 ROLES
 CREATE TABLE IF NOT EXISTS roles (
     id INT(11) NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (id),
-    descricao VARCHAR(100) NOT NULLshopdb
+    descricao VARCHAR(100) NOT NULL
 );
 
 
 -- #2 CATEGORIAS
 CREATE TABLE IF NOT EXISTS categorias (
     id INT(11) NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY (id),
-    descricao VARCHAR(250) NOT NULLshopdbshopdb
+    descricao VARCHAR(250) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 

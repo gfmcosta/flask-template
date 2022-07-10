@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Loja - Lucas</title>
+</head>
+<body>
+    
+    <div id="layout">
+        <ul id="ul_left">
+            <li><a href="/frontend"><b>HOME</b></a></li>
+            {% for c in categorias %}
+            <li><a href="{{url_for('tel_front', idCategoria=c.id)}}"><b>{{c.descricao}}</b></a></li>
+            {% endfor %}
+            
+            <li style="float: right;"><a href="/login"><b>Logout</b></a></li>
+        </ul>
+        <br>
+        <h1 style="text-align: center">Produtos</h1>
+        <br><br>
+
+        
+        <div class="content" style="margin: auto; text-align: center;">
+            {% for product in products %}
+            <!-- categoriaId == 1, pois é o id que defini na BD para telemoveis -->
+            {% if (product.categoriaId==id) %}
+            {% set image = "images/"+product.image_url%}
+            <hr>
+            <div style="text-align: center;">
+                <h3>{{product.descricao}}</h3>
+                <img src="{{ url_for('static', filename=image) }}" alt="{{product.image_url}}" width='300' height='300'>
+                <br>
+                <br>
+                <div>
+                    <span>Preço: {{product.preco}} </span> <span> | </span>
+                    <p></p>
+                    <span><a id="btnComprar" href="{{url_for('encomenda', idProduto=product.id)}}"> Adicionar ao Carrinho</a></span>
+                    <br><br>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+        <br><br><br><br><br>
+
+        
+        <footer id="rodape">
+            <table id="tableFooter">
+                
+                <tr class="tr1F">
+                    <th id="th1"><b>Para Contactar o Aluno: </b></th>
+                    <td class="td1footer">
+                        <li id="emailSite">
+                            <a href="mailto:aluno220204@epad.edu.pt">aluno220204@epad.edu.pt</a>
+                        </li>
+                    </td>
+                </tr>
+                <br>
+    
+                
+                <tr class="tr2F">
+                    <th id="th2"><b>A Escola EPAD: </b></th>
+                    <td class="td2footer">
+                        <li id="emailSite">
+                            <div class="divTeste">
+                                <a href="https://www.epad.edu.pt/">epad.edu.pt</a>
+                            </div>
+                        </li>
+                    </td>
+                </tr>
+            </table>
+        </footer>
+    </div>
+
+</body>
+</html>

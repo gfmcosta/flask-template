@@ -1,0 +1,7 @@
+Data da encomenda: 2022-07-01
+Nr. Encomenda: 21
+Nome: Costa
+====================1 Galaxy Note 9 2 1500.0
+
+
+Total fatura: 3000.0€

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Loja - Lucas</title>
+    
+</head>
+<body>
+    
+    <div id="layout">
+        <ul id="ul_left">
+            <li><a href="/frontend"><b>HOME</b></a></li>
+            {% for c in categorias %}
+            <li><a  href="{{url_for('tel_front', idCategoria=c.id)}}"><b>{{c.descricao}}</b></a></li>
+            {% endfor %}
+            <li style="float: right;"><a href="/login"><b>Logout</b></a></li>
+        </ul>
+        <br>
+        <h1 style="text-align: center">Carrinho</h1>
+        <br><br>
+
+        
+        <div class="content" style="margin: auto; text-align: center;">
+            <form method="POST" action="{{ url_for('encomenda',idProduto=produto.id)}}">
+            <table class="table">
+                <tr class="table_header">
+                    <th class="table_cell">Descricao</th>
+                    <th class="table_cell">Preco</th>
+                    <th class="table_cell">Quantidade</th>
+                    <th class="table_cell">Eliminar</th>
+                 </tr>
+
+                <tr class="table_row">
+                    <td class="table_cell">{{produto.descricao}}</td>
+                    <td class="table_cell"> {{produto.preco}} €</td>
+                    <td class="table_cell"><input name="quantidade" type="number" required></td>
+                    <td class="table_cell"><a class="a2" href="/frontend"><span class="span2">Eliminar</span></a></td>
+                    
+                </tr>
+            
+            </table>
+            <input style="margin-left: 800px; margin-top: 20px;" class="guardar_bt" type="submit" value="Fechar encomenda"></form>
+           </form>
+
+        </div>
+        <br><br><br><br><br>
+
+        
+        <footer id="rodape">
+            <table id="tableFooter">
+                
+                <tr class="tr1F">
+                    <th id="th1"><b>Para Contactar o Aluno: </b></th>
+                    <td class="td1footer">
+                        <li id="emailSite">
+                            <a href="mailto:aluno220204@epad.edu.pt">aluno220204@epad.edu.pt</a>
+                        </li>
+                    </td>
+                </tr>
+                <br>
+    
+                
+                <tr class="tr2F">
+                    <th id="th2"><b>A Escola EPAD: </b></th>
+                    <td class="td2footer">
+                        <li id="emailSite">
+                            <div class="divTeste">
+                                <a href="https://www.epad.edu.pt/">epad.edu.pt</a>
+                            </div>
+                        </li>
+                    </td>
+                </tr>
+            </table>
+        </footer>
+    </div>
+
+</body>
+</html>
