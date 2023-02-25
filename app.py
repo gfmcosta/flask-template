@@ -34,7 +34,7 @@ Bootstrap(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-
+print("teste")
 
 class Roles(UserMixin, db.Model):
     __tablename__ = 'roles'
